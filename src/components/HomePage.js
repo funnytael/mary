@@ -6,7 +6,7 @@ import axios from "axios";
 
 const provider = getDefaultProvider("rinkeby", { alchemy: config.alchemyKey });
 const contract = new Contract(
-  "0x104297581F9855eDFc99A59012008EF98C9F61f7",
+  "0xA28bC2487fD9ff8dbd727a4627375c56F5BcdB04",
   abi,
   provider
 );
@@ -74,7 +74,7 @@ export const HomePage = () => {
 
     // Create the contract instance
     const contract = new Contract(
-      "0x104297581F9855eDFc99A59012008EF98C9F61f7",
+      "0xA28bC2487fD9ff8dbd727a4627375c56F5BcdB04",
       abi,
       signer
     );
@@ -91,9 +91,9 @@ export const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-800">
+    <div className="min-h-screen bg-green-800">
       <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
-        <div className="text-gray-100 text-6xl pt-28 pb-10">ROBOTS</div>
+        <div className="text-gray-100 text-6xl pt-28 pb-10">NFT Crime</div>
         {mintedNftState.state === "PENDING" && (
           <div className="text-xl text-white">LOADING...</div>
         )}
@@ -119,9 +119,9 @@ export const HomePage = () => {
           <button
             onClick={handlePurchase}
             type="button"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+            className="inline-flex bg-red-700 items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
           >
-            Buy My Robot
+            Murder Can Kill
           </button>
         </div>
       </div>
