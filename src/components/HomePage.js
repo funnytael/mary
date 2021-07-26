@@ -6,7 +6,7 @@ import axios from "axios";
 
 const provider = getDefaultProvider("rinkeby", { alchemy: config.alchemyKey });
 const contract = new Contract(
-  "0xA28bC2487fD9ff8dbd727a4627375c56F5BcdB04",
+  "0x54E1db850A876d8C81B4C21a4D681eb2b9784A6F",
   abi,
   provider
 );
@@ -74,7 +74,7 @@ export const HomePage = () => {
 
     // Create the contract instance
     const contract = new Contract(
-      "0xA28bC2487fD9ff8dbd727a4627375c56F5BcdB04",
+      "0x54E1db850A876d8C81B4C21a4D681eb2b9784A6F",
       abi,
       signer
     );
@@ -91,18 +91,37 @@ export const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-green-800">
-      <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
-        <div className="text-gray-100 text-6xl pt-28 pb-10">NFT Crime</div>
+    <div className="min-h-screen bg-yellow-900">
+      <div className="max-w-7xl mx-auto sm:px-6 mb-3 lg:px-8 border-2 border-none">
+        <div className="border-2 border-none text-gray-100 text-6xl pt-5 h-24 pb-5 border-green-900">
+            <div className="border-2 border-none float-left border-red-900">
+              <div className="border-2 border-none">NFT Crime</div>
+            </div>
+          <div className="border-2 border-none float-right">
+            <div className="-mt-3">
+              <button
+                onClick={handlePurchase}
+                type="button"
+                className="inline-flex bg-red-700 items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+              >
+                Murder Can Kill
+              </button>
+            </div>
+          </div>
+        </div>
         {mintedNftState.state === "PENDING" && (
-          <div className="text-xl text-white">LOADING...</div>
+          <div className="text-xl text-white border-2 border-none h-96 w-auto mt-10">
+            <div className="mt-44">
+            LOADING...
+            </div>
+          </div>
         )}
         {mintedNftState.state === "SUCCESS" && (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-4 gap-4 mt-5">
             {mintedNftState.data.map(
               ({ id, image, name, description, owner }) => {
                 return (
-                  <div key={id} className="bg-white rounded p-2">
+                  <div key={id} className="bg-white rounded p-2 shadow-lg">
                     <img src={image} className="mx-auto p-4" alt={name} />
                     <div className="text-xl">{name}</div>
                     <div className="">{description}</div>
@@ -115,15 +134,7 @@ export const HomePage = () => {
             )}
           </div>
         )}
-        <div className="mt-12">
-          <button
-            onClick={handlePurchase}
-            type="button"
-            className="inline-flex bg-red-700 items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-          >
-            Murder Can Kill
-          </button>
-        </div>
+       
       </div>
       {modalVisible && (
         <div
