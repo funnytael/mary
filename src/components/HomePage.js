@@ -81,17 +81,21 @@ export const HomePage = () => {
 
     // Call the purchase method
     setPurchaseState({ state: "PENDING_SIGNER" });
+    try {
     const receipt = await contract.purchase({ value: utils.parseEther("1") });
     setPurchaseState({ state: "PENDING_CONFIRMAION" });
     const transaction = await receipt.wait();
     setPurchaseState({ state: "SUCCESS", transaction });
-
+  } catch (err) {
+      console.log(err);
+      return setPurchaseState({ state: "UNINITIALIZED" });
+    }
     // Reload the Robots
     await loadRobotsData();
   };
 
   return (
-    <div className="min-h-screen bg-yellow-900">
+   <div className="min-h-screen bg-yellow-900">
       <div className="max-w-7xl mx-auto sm:px-6 mb-3 lg:px-8 border-2 border-none">
         <div className="border-2 border-none text-gray-100 text-6xl pt-5 h-24 pb-5 border-green-900">
             <div className="border-2 border-none float-left border-red-900">
